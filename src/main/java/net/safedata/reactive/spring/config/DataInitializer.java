@@ -29,6 +29,8 @@ public class DataInitializer implements ApplicationRunner {
     @Override
     public void run(ApplicationArguments args) {
         //distinctStatements();
+        
+        if (true) return;
 
         // every operation is executed on a different thread --> there's no sync guarantee
         productRepository.deleteAll()

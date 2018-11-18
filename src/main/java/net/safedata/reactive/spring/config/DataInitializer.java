@@ -2,6 +2,8 @@ package net.safedata.reactive.spring.config;
 
 import net.safedata.reactive.spring.domain.entity.Product;
 import net.safedata.reactive.spring.domain.repository.ProductRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
@@ -12,6 +14,8 @@ import java.util.Random;
 
 @Component
 public class DataInitializer implements ApplicationRunner {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(DataInitializer.class);
 
     private final Random random = new Random(500);
 
@@ -35,7 +39,7 @@ public class DataInitializer implements ApplicationRunner {
                                      .flatMap(productRepository::save)
                          )
                          .thenMany(productRepository.findAll())
-                         .subscribe(item -> System.out.println("[" + Thread.currentThread().getId() + "] " + item));
+                         .subscribe(item -> LOGGER.info("\t[{}] {}", Thread.currentThread().getId(), item));
     }
 
     @SuppressWarnings("unused")

@@ -35,9 +35,10 @@ public class DataInitializer implements ApplicationRunner {
                                      .flatMap(productRepository::save)
                          )
                          .thenMany(productRepository.findAll())
-                         .subscribe(System.out::println);
+                         .subscribe(item -> System.out.println("[" + Thread.currentThread().getId() + "] " + item));
     }
 
+    @SuppressWarnings("unused")
     private void distinctStatements() {
         /*
         final Flux<String> stringPublisher = Flux.just("Samsung Apple Google HP Amazon Nook".split("\\s"));

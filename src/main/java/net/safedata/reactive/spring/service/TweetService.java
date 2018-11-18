@@ -39,11 +39,11 @@ public class TweetService {
         this.actorMaterializer = actorMaterializer; this.tweetRepository = tweetRepository;
     }
 
-    public Publisher<Tweet> getAllTweets() {
+    Publisher<Tweet> getAllTweets() {
         return tweetRepository.findAll();
     }
 
-    public Publisher<HashTag> getAllHashTags() {
+    Publisher<HashTag> getAllHashTags() {
         return Source.fromPublisher(getAllTweets())
                      .map(Tweet::getHashTags)
                      .reduce(this::joinSets)
@@ -104,7 +104,7 @@ interface TweetRepository extends ReactiveMongoRepository<Tweet, String> {
 class Author {
     private final String name;
 
-    public Author(String name) {
+    Author(String name) {
         this.name = name;
     }
 
@@ -137,7 +137,7 @@ class Tweet {
     public Tweet() {
     }
 
-    public Tweet(String text, Author author) {
+    Tweet(String text, Author author) {
         this.text = text;
         this.author = author;
     }
@@ -172,7 +172,7 @@ class Tweet {
         this.author = author;
     }
 
-    public Set<HashTag> getHashTags() {
+    Set<HashTag> getHashTags() {
         return Arrays.stream(text.split("\\s"))
                      .filter(text -> text.startsWith("#"))
                      .map(word -> new HashTag(word.replaceAll("[^#\\w+]", "").toLowerCase()))

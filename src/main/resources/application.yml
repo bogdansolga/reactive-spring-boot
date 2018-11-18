@@ -5,8 +5,11 @@ logging:
     org:
       apache: warn
       mongodb: warn
-      reactor: error
       springframework: warn
+    reactor: error
+
+  pattern:
+    console: '%clr([%date{HH:mm:ss.SSS}]){faint} %clr(%2p) %clr(%-30.30logger{36}){cyan} %m%n%wex'
 
 spring:
   jackson:

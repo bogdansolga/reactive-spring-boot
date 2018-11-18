@@ -1,0 +1,15 @@
+# logging settings
+logging:
+  level:
+    root: info
+    org:
+      apache: warn
+      mongodb: warn
+      reactor: error
+      springframework: warn
+
+spring:
+  jackson:
+    serialization:
+      indent_output: true
+    default-property-inclusion: non_null

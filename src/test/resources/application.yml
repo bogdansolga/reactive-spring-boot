@@ -1,0 +1,12 @@
+# logging settings
+logging:
+  level:
+    root: info
+    org:
+      apache: warn
+      mongodb: warn
+      springframework: warn
+    reactor: error
+
+  pattern:
+    console: '%clr([%date{HH:mm:ss.SSS}]){faint} %clr(%2p) %clr(%-30.30logger{36}){cyan} %m%n%wex'

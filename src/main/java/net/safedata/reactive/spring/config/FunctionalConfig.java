@@ -27,7 +27,9 @@ public class FunctionalConfig {
 
         final RouterFunction<ServerResponse> routerFunction = route(GET("/fn/product"),
                     request -> ServerResponse.ok().body(aSimpleProduct, Product.class))
-                .andRoute(GET("/fn/many"), request -> ServerResponse.ok().body(severalProducts, Product.class))
+                .andRoute(GET("/fn/many"), request -> ServerResponse.ok()
+                                                                    .contentType(MediaType.APPLICATION_JSON_UTF8)
+                                                                    .body(severalProducts, Product.class))
                 .andRoute(GET("/fn/stream"), request -> ServerResponse.ok()
                                                                       .contentType(MediaType.TEXT_EVENT_STREAM)
                                                                       .body(productsStream, Product.class));

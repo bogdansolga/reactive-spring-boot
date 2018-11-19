@@ -5,7 +5,6 @@ import akka.stream.ActorMaterializer;
 import akka.stream.javadsl.AsPublisher;
 import akka.stream.javadsl.Sink;
 import akka.stream.javadsl.Source;
-import com.fasterxml.jackson.annotation.JsonCreator;
 import org.reactivestreams.Publisher;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationRunner;
@@ -60,7 +59,7 @@ public class TweetService {
 }
 
 @Configuration
-class TwitterServiceConfiguration {
+class TweetServiceConfiguration {
     @Bean
     ActorSystem actorSystem() {
         return ActorSystem.create("akka-streaming-example");
@@ -199,7 +198,7 @@ class Tweet {
         return "Tweet{" +
                 "id='" + id + '\'' +
                 ", text='" + text + '\'' +
-                ", author=" + author +
+                ", author=" + author.getName() +
                 '}';
     }
 }
@@ -210,7 +209,6 @@ class HashTag {
     @Id
     private final String id;
 
-    @JsonCreator
     HashTag(String id) {
         this.id = id;
     }

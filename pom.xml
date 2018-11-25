@@ -21,7 +21,7 @@
 
 	<modules>
 		<module>webflow-overview</module>
-		<module>integration</module>
+		<module>spring-integration</module>
 	</modules>
 
 	<properties>

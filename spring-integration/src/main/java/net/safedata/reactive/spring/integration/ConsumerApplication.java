@@ -1,4 +1,4 @@
-package net.safedata.reactive.spring.integration.consumer;
+package net.safedata.reactive.spring.integration;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -9,7 +9,6 @@ import org.springframework.integration.dsl.MessageChannels;
 import org.springframework.integration.file.dsl.Files;
 import org.springframework.integration.handler.GenericHandler;
 import org.springframework.integration.support.MessageBuilder;
-import org.springframework.messaging.Message;
 import org.springframework.messaging.MessageChannel;
 import org.springframework.messaging.MessageHeaders;
 import reactor.core.publisher.Flux;

@@ -8,6 +8,7 @@ import akka.stream.javadsl.Source;
 import org.reactivestreams.Publisher;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationRunner;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.annotation.Id;
@@ -77,6 +78,7 @@ class TweetServiceConfiguration {
     }
 
     @Bean
+    @ConditionalOnProperty("testTweets")
     ApplicationRunner runner(final TweetRepository tweetRepository) {
         final Author bogdan = new Author("bogdan");
         final Author vio = new Author("vio");

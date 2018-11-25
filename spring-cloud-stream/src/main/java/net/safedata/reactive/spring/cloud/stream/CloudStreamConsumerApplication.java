@@ -7,6 +7,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class CloudStreamConsumerApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(net.safedata.reactive.spring.integration.ConsumerApplication.class, args);
+		SpringApplication.run(CloudStreamConsumerApplication.class, args);
 	}
 }

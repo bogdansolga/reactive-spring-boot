@@ -7,6 +7,7 @@ import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.List;
 
+@SuppressWarnings("unused")
 public class Order implements Serializable {
 
     private final int id;
@@ -36,7 +37,7 @@ public class Order implements Serializable {
     public String toString() {
         return "Order{" +
                 "id=" + id +
-                ", products=" + products.size() + " products " +
+                ", products=" + products.size() + " products" +
                 ", orderDatetime=" + orderDatetime +
                 '}';
     }

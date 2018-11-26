@@ -31,19 +31,19 @@ public class CloudStreamPublisherApplication {
 		return args -> {
 			int number = 0;
 			while (number < 100) {
-				sendOrderAsMessage(source, number++);
+				final Message<Order> orderMessage = buildMessage(++number);
+				LOGGER.info("Sending a message for the order number {}...", number);
+				source.output().send(orderMessage);
 				Thread.sleep(1000);
 			}
 		};
 	}
 
-	private void sendOrderAsMessage(final Source source, final int number) {
+	private Message<Order> buildMessage(final int number) {
 		final Product product = new Product(number, "Tablet " + number, 200 * number);
-		final Message<Order> orderMessage = MessageBuilder.withPayload(new Order(number, product, LocalDateTime.now()))
-														   .setHeader(MessageHeaders.CONTENT_TYPE, MimeTypeUtils.APPLICATION_JSON)
-														   .build();
-		LOGGER.info("Sending a message for the order '{}'...", orderMessage.getPayload());
-		source.output().send(orderMessage);
+		return MessageBuilder.withPayload(new Order(number, product, LocalDateTime.now()))
+							 .setHeader(MessageHeaders.CONTENT_TYPE, MimeTypeUtils.APPLICATION_JSON)
+							 .build();
 	}
 
 	public static void main(String[] args) {

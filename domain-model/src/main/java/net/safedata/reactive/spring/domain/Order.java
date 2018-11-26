@@ -1,5 +1,7 @@
 package net.safedata.reactive.spring.domain;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Collections;
@@ -11,12 +13,7 @@ public class Order implements Serializable {
     private final List<Product> products;
     private final LocalDateTime orderDatetime;
 
-    public Order(final int id, final List<Product> products, final LocalDateTime orderDatetime) {
-        this.id = id;
-        this.products = products;
-        this.orderDatetime = orderDatetime;
-    }
-
+    @JsonCreator
     public Order(final int id, final Product product, final LocalDateTime orderDatetime) {
         this.id = id;
         this.products = Collections.singletonList(product);

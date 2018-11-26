@@ -44,10 +44,10 @@ public class CloudStreamPublisherApplication {
 
 	private void sendOrderAsMessage(final Source source, final int orderId) {
 		final Product product = new Product(orderId, "Tablet " + orderId, 200 * orderId);
-		final Message<Order> orderMessage = MessageBuilder.withPayload(new Order(1, product, LocalDateTime.now()))
-														  .setHeader(MessageHeaders.CONTENT_TYPE, MimeTypeUtils.APPLICATION_JSON)
+		final Message<String> orderMessage = MessageBuilder.withPayload(new Order(1, product, LocalDateTime.now()).toString())
+														  //.setHeader(MessageHeaders.CONTENT_TYPE, MimeTypeUtils.APPLICATION_JSON)
 														  .build();
-		LOGGER.info("Sending a message for the order {}...", orderId);
+		LOGGER.info("Sending a message for the order '{}'...", orderMessage.getPayload());
 		source.output().send(orderMessage);
 	}
 

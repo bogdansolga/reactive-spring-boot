@@ -22,7 +22,10 @@ spring:
       bindings:
         output:
           destination: orders
-          group: orders-group
+          #group: orders-group
+
+  kafka:
+    bootstrap-servers: localhost:9092
 
 server:
   port: 8080

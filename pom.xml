@@ -20,8 +20,11 @@
 	</parent>
 
 	<modules>
+		<module>domain-model</module>
 		<module>webflow-overview</module>
 		<module>spring-integration</module>
+		<module>spring-cloud-stream-consumer</module>
+		<module>spring-cloud-stream-publisher</module>
 	</modules>
 
 	<properties>
@@ -61,6 +64,12 @@
 				<artifactId>reactor-test</artifactId>
 				<version>${reactor-test.version}</version>
 				<scope>test</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>net.safedata</groupId>
+				<artifactId>domain-model</artifactId>
+				<version>${project.version}</version>
 			</dependency>
 
 			<dependency>

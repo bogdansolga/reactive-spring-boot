@@ -10,13 +10,18 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>spring-cloud-stream</artifactId>
+    <artifactId>spring-cloud-stream-publisher</artifactId>
     <version>0.0.1-SNAPSHOT</version>
 
     <dependencies>
         <dependency>
             <groupId>io.projectreactor</groupId>
             <artifactId>reactor-test</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>net.safedata</groupId>
+            <artifactId>domain-model</artifactId>
         </dependency>
 
         <dependency>

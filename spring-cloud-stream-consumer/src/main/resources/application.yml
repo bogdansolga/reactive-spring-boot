@@ -16,3 +16,13 @@ spring:
     serialization:
       indent_output: true
     default-property-inclusion: non_null
+
+  cloud:
+    stream:
+      bindings:
+        input:
+          destination: orders
+          group: orders-group
+
+server:
+  port: 8081

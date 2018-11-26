@@ -4,7 +4,6 @@ logging:
     root: info
     org:
       apache: warn
-      mongodb: warn
       springframework: warn
     reactor: error
 
@@ -23,6 +22,7 @@ spring:
         input:
           destination: orders
           #group: orders-group
+
   kafka:
     bootstrap-servers: localhost:9092
 

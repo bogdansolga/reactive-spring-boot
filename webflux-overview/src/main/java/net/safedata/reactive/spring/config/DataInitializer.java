@@ -30,9 +30,7 @@ public class DataInitializer implements ApplicationRunner {
     public void run(ApplicationArguments args) {
         //distinctStatements();
         
-        //if (true) return;
-
-        LOGGER.info("Deleting all...");
+        if (true) return;
 
         // every operation is executed on a different thread --> there's no sync guarantee
         productRepository.deleteAll()
@@ -43,6 +41,8 @@ public class DataInitializer implements ApplicationRunner {
                                      .flatMap(productRepository::save)
                          )
                          .thenMany(productRepository.findAll())
+                         // the created publisher is deferred --> is async + is retrieving the elements only when a subscription is added to it
+                         // the returned Flux can be seen as 'a promise of Products'
                          .subscribe(item -> LOGGER.info("\t[{}] {}", Thread.currentThread().getId(), item));
     }
 

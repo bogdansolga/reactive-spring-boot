@@ -30,7 +30,9 @@ public class DataInitializer implements ApplicationRunner {
     public void run(ApplicationArguments args) {
         //distinctStatements();
         
-        if (true) return;
+        //if (true) return;
+
+        LOGGER.info("Deleting all...");
 
         // every operation is executed on a different thread --> there's no sync guarantee
         productRepository.deleteAll()

@@ -22,6 +22,8 @@
 	<modules>
 		<module>domain-model</module>
 		<module>webflux-overview</module>
+		<module>classic-rest-project</module>
+		<module>webclient-example</module>
 		<module>spring-integration</module>
 		<module>spring-cloud-stream-consumer</module>
 		<module>spring-cloud-stream-publisher</module>
@@ -102,6 +104,12 @@
 			<dependency>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-starter-webflux</artifactId>
+				<version>${spring-boot.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-starter-web</artifactId>
 				<version>${spring-boot.version}</version>
 			</dependency>
 

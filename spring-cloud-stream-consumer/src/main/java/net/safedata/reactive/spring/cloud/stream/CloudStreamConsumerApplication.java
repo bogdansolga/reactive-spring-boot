@@ -26,6 +26,11 @@ public class CloudStreamConsumerApplication {
 				  .subscribe(order -> LOGGER.info("{}", order));
 	}
 
+	@StreamListener
+	public void process(@Input(Sink.INPUT) final Order order) {
+
+	}
+
 	public static void main(String[] args) {
 		SpringApplication.run(CloudStreamConsumerApplication.class, args);
 	}

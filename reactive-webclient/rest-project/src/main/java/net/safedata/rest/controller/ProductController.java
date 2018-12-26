@@ -31,7 +31,7 @@ public class ProductController {
 
     @RequestMapping("/product/{id}")
     public Product getProduct(@PathVariable final int id) throws InterruptedException {
-        Thread.sleep(2000);
+        Thread.sleep(2000); // simulating a long running query
         return products.get(id);
     }
 

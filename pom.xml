@@ -22,8 +22,7 @@
 	<modules>
 		<module>domain-model</module>
 		<module>webflux-overview</module>
-		<module>classic-rest-project</module>
-		<module>webclient-example</module>
+		<module>reactive-webclient</module>
 		<module>spring-integration</module>
 		<module>spring-cloud-stream-consumer</module>
 		<module>spring-cloud-stream-publisher</module>

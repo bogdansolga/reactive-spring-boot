@@ -38,7 +38,7 @@ public class ProductController {
     @GetMapping("/many")
     public Publisher<Product> many() {
         return Flux.<Product>generate(sink -> sink.next(new Product(5, "iSome", 200)))
-                .take(50);
+                   .take(50);
     }
 
     @GetMapping(

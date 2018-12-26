@@ -23,8 +23,6 @@ public class ReactiveWebClientExample {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ReactiveWebClientExample.class);
 
-    private static WebClient webClient = WebClient.create("http://localhost:8080");
-
     public static void main(String[] args) {
         final SpringApplication application = new SpringApplication(ReactiveWebClientExample.class);
         application.setBannerMode(Banner.Mode.OFF);
@@ -34,6 +32,7 @@ public class ReactiveWebClientExample {
 
     @Bean
     ApplicationRunner applicationRunner() {
+        final WebClient webClient = WebClient.create("http://localhost:8080");
         return args -> {
             System.out.println();
 

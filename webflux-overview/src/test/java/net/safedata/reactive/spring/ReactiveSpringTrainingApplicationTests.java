@@ -1,6 +1,5 @@
 package net.safedata.reactive.spring;
 
-import net.safedata.reactive.spring.domain.entity.Product;
 import net.safedata.reactive.spring.service.ProductService;
 import org.junit.Before;
 import org.junit.Test;
@@ -55,7 +54,12 @@ public class ReactiveSpringTrainingApplicationTests {
 					 .exchange()
 					 .expectStatus()
 					 	.isOk()
-					 .expectBodyList(Product.class)
-					 	.hasSize(5);
+					 .expectHeader()
+					 	.contentType(MediaType.APPLICATION_JSON_UTF8)
+					 //.expectBodyList(Product.class).hasSize(5)
+					 .expectBody()
+					 	.jsonPath("$.length()").isEqualTo(5)
+					 	.jsonPath("$[0].id").isEqualTo(10)
+		;
 	}
 }

@@ -1,5 +1,6 @@
 package net.safedata.reactive.spring;
 
+import net.safedata.reactive.spring.domain.entity.Product;
 import net.safedata.reactive.spring.service.ProductService;
 import org.junit.Before;
 import org.junit.Test;
@@ -47,11 +48,20 @@ public class ReactiveSpringTrainingApplicationTests {
 	}
 
 	@Test
+	public void givenTheManyProducts_WhenGettingTheProducts_ThenTheResponseContentIsCorrect() {
+		StepVerifier.create(productService.someProducts())
+					.expectNext(new Product(1, "The first product", 100))
+					.expectNext(new Product(2, "The second product", 200))
+					.expectNext(new Product(3, "The third product", 300))
+					.verifyComplete();
+	}
+
+	@Test
 	public void givenTheMultipleProductsEndpointExposesProducts_whenGettingTheProducts_thenAllGood() {
 		webTestClient.get()
 					 .uri("/fn/many")
 					 .accept(MediaType.APPLICATION_JSON_UTF8)
-					 .exchange()
+					 .exchange() // the only blocking call --> we don't want the test to be done before retrieving the response
 					 .expectStatus()
 					 	.isOk()
 					 .expectHeader()

@@ -10,6 +10,7 @@ import org.springframework.boot.WebApplicationType;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.reactive.function.client.WebClient;
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 import java.time.Duration;
@@ -39,6 +40,7 @@ public class ReactiveWebClientExample {
             final int productsCount = 10;
 
             final Instant start = Instant.now();
+            /*
             final List<Mono<Product>> products = IntStream.range(0, productsCount)
                                                           .boxed()
                                                           .map(id -> webClient.get()
@@ -49,6 +51,17 @@ public class ReactiveWebClientExample {
 
             Mono.when(products)
                 .block();
+            */
+
+            Flux.range(0, productsCount)
+                .flatMap(id -> webClient.get()
+                                        .uri("/product/{id}", id)
+                                        //.retrieve() // gives a straight path to the response body
+                                        //.bodyToMono(Product.class))
+                                        .exchange() // if processing needs to be done before getting the body
+                                        // --> perhaps it's very large, or needing to access the HTTP status or headers
+                                        .flatMap(response -> response.bodyToMono(Product.class))) // can also nest other client calls, if needed
+                .blockLast();
 
             System.out.println();
             LOGGER.info("Getting all the {} products took {} ms", productsCount, Duration.between(start, Instant.now()).toMillis());

@@ -6,11 +6,11 @@
 
     <parent>
         <groupId>net.safedata</groupId>
-        <artifactId>reactive-spring-boot-training</artifactId>
+        <artifactId>d01</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>webflux-overview</artifactId>
+    <artifactId>d01s03-spring-webflux-overview</artifactId>
     <version>0.0.1-SNAPSHOT</version>
 
     <properties>
@@ -28,12 +28,10 @@
             <artifactId>akka-stream-testkit_2.12</artifactId>
         </dependency>
 
-        <!--
         <dependency>
             <groupId>de.flapdoodle.embed</groupId>
             <artifactId>de.flapdoodle.embed.mongo</artifactId>
         </dependency>
-        -->
 
         <dependency>
             <groupId>io.projectreactor</groupId>
@@ -70,7 +68,6 @@
     </dependencies>
 
     <build>
-
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>

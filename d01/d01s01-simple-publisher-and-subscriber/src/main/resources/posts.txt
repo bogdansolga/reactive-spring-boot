@@ -1,0 +1,33 @@
+A reactive system is an architectural style that allows multiple individual applications to coalesce as a single unit, 
+reacting to its surroundings, while remaining aware of each other—this could manifest as being able to scale up/down, 
+load balancing, and even taking some of these steps proactively.
+
+It’s possible to write a single application in a reactive style (i.e. using reactive programming); however, that’s merely 
+one piece of the puzzle. Though each of the above aspects may seem to qualify as "reactive," in and of themselves they 
+do not make a system reactive.
+
+When people talk about "reactive" in the context of software development and design, they generally mean one of three things:
+
+Functional reactive programming, commonly called FRP, is most frequently misunderstood. FRP was very precisely defined 
+20 years ago by Conal Elliott. The term has most recently been used incorrectly1 to describe technologies like Elm, 
+Bacon.js, and Reactive Extensions (RxJava, Rx.NET, RxJS) amongst others. Most libraries claiming to support FRP are 
+almost exclusively talking about reactive programming and it will therefore not be discussed further.
+
+Reactive programming, not to be confused with functional reactive programming, is a subset of asynchronous programming 
+and a paradigm where the availability of new information drives the logic forward rather than having control flow driven 
+by a thread-of-execution.
+
+It supports decomposing the problem into multiple discrete steps where each can be executed in an asynchronous and 
+non-blocking fashion, and then be composed to produce a workflow—possibly unbounded in its inputs or outputs.
+
+Asynchronous is defined by the Oxford Dictionary as “not existing or occurring at the same time,” which in this context 
+means that the processing of a message or event is happening at some arbitrary time, possibly in the future. This is a very 
+important technique in reactive programming since it allows for non-blocking execution—where threads of execution competing 
+for a shared resource don’t need to wait by blocking (preventing the thread of execution from performing other work until 
+current work is done), and can as such perform other useful work while the resource is occupied. 
+
+Amdahl’s Law tells us that contention is the biggest enemy of scalability, and therefore a reactive program should rarely, 
+if ever, have to block.
+
+Reactive programming is generally event-driven, in contrast to reactive systems, which are message-driven—the distinction 
+between event-driven and message-driven is clarified later in this article.

@@ -3,7 +3,9 @@ package net.safedata.reactive.intro.service;
 import net.safedata.reactive.intro.dto.PostDTO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.event.EventListener;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.scheduling.annotation.Async;
@@ -28,11 +30,18 @@ public class PostService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(PostService.class);
 
+    private final ApplicationEventPublisher applicationEventPublisher;
+
     private List<String> posts;
 
     private List<String> authors = Arrays.asList("john", "jane", "alex", "maria", "michelle");
 
     private Random random;
+
+    @Autowired
+    public PostService(final ApplicationEventPublisher applicationEventPublisher) {
+        this.applicationEventPublisher = applicationEventPublisher;
+    }
 
     @Async
     @EventListener(ApplicationReadyEvent.class)
@@ -41,6 +50,8 @@ public class PostService {
         LOGGER.trace("Successfully loaded {} posts from the posts file", posts.size());
 
         random = new Random(posts.size());
+
+        applicationEventPublisher.publishEvent("Initialized");
     }
 
     private List<String> getPostsFromFile(final ClassPathResource classPathResource) {
@@ -71,9 +82,18 @@ public class PostService {
     }
 
     public List<PostDTO> getRandomPosts() {
-        return IntStream.of(0, random.nextInt(posts.size()))
-                        .mapToObj(index -> posts.get(index))
-                        .map(post -> new PostDTO(authors.get(random.nextInt(5)), post))
-                        .collect(Collectors.toList());
+        final int postsNumber = posts.size();
+        final int start = random.nextInt(postsNumber);
+        final int end = random.nextInt(postsNumber);
+
+        final int startFrom = end >= start ? start : end;
+        final int endAt = end > start ? end : start;
+
+        final List<PostDTO> listOfPosts = IntStream.range(startFrom, endAt)
+                                                   .mapToObj(index -> posts.get(index))
+                                                   .map(post -> new PostDTO(authors.get(random.nextInt(5)), post))
+                                                   .collect(Collectors.toList());
+        LOGGER.debug("Returning {} posts [from {} to {}]", listOfPosts.size(), startFrom, endAt);
+        return listOfPosts;
     }
 }

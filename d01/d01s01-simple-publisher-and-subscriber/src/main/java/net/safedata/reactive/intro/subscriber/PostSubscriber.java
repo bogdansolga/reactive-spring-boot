@@ -23,15 +23,25 @@ public class PostSubscriber implements Subscriber<PostDTO> {
 
     @Override
     public void onSubscribe(final Subscription subscription) {
-        LOGGER.trace("{} has subscribed", id);
+        LOGGER.debug("{} has subscribed, batch size is {}", id, batchSize);
         this.subscription = subscription;
         subscription.request(batchSize);
+
+        // simulate a random long running operation
+        if (System.currentTimeMillis() % 2 != 0) {
+            try {
+                Thread.sleep(300);
+                System.out.println("Processing...");
+            } catch (final InterruptedException e) {
+                LOGGER.error(e.getMessage(), e);
+            }
+        }
     }
 
     @Override
     public void onNext(final PostDTO postDTO) {
         StringBuilder stringBuilder = new StringBuilder()
-                .append("[").append(postDTO.getAuthor()).append("] ")
+                .append("[").append(postDTO.getAuthor()).append("] \t")
                 .append("[").append(LocalTime.now().toString().split("\\.")[0]).append("] ")
                 .append(postDTO.getMessage());
 

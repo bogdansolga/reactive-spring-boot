@@ -35,7 +35,7 @@
 
 		<embedded-mongo.version>2.2.0</embedded-mongo.version>
 
-		<java.version>11</java.version>
+		<java.version>1.8</java.version>
 
 		<kotlin.version>1.3.10</kotlin.version>
 

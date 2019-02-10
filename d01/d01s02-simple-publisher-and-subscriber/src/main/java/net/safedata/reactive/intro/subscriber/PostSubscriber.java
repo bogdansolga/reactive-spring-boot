@@ -6,8 +6,6 @@ import org.reactivestreams.Subscription;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.time.LocalTime;
-
 public class PostSubscriber implements Subscriber<PostDTO> {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(PostSubscriber.class);
@@ -31,7 +29,7 @@ public class PostSubscriber implements Subscriber<PostDTO> {
         if (System.currentTimeMillis() % 2 != 0) {
             try {
                 Thread.sleep(300);
-                System.out.println("Processing...");
+                LOGGER.info("Performing a long running processing...");
             } catch (final InterruptedException e) {
                 LOGGER.error(e.getMessage(), e);
             }
@@ -40,12 +38,7 @@ public class PostSubscriber implements Subscriber<PostDTO> {
 
     @Override
     public void onNext(final PostDTO postDTO) {
-        StringBuilder stringBuilder = new StringBuilder()
-                .append("[").append(postDTO.getAuthor()).append("] \t")
-                .append("[").append(LocalTime.now().toString().split("\\.")[0]).append("] ")
-                .append(postDTO.getMessage());
-
-        LOGGER.info("{}", stringBuilder);
+        LOGGER.info("{}", postDTO);
         subscription.request(batchSize);
     }
 

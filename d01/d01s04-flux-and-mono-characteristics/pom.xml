@@ -3,21 +3,20 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <packaging>pom</packaging>
 
     <parent>
         <groupId>net.safedata</groupId>
-        <artifactId>reactive-spring-boot-training</artifactId>
+        <artifactId>d01</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>d01</artifactId>
+    <artifactId>d01s04-flux-and-mono-characteristics</artifactId>
     <version>0.0.1-SNAPSHOT</version>
 
-    <modules>
-        <module>d01s02-simple-publisher-and-subscriber</module>
-        <module>d01s03-simple-flux-and-mono-samples</module>
-        <module>d01s04-flux-and-mono-characteristics</module>
-        <module>d01s05-spring-webflux-overview</module>
-    </modules>
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-webflux</artifactId>
+        </dependency>
+    </dependencies>
 </project>

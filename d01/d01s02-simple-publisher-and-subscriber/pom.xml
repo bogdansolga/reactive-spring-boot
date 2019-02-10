@@ -10,7 +10,7 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>d01s01-simple-publisher-and-subscriber</artifactId>
+    <artifactId>d01s02-simple-publisher-and-subscriber</artifactId>
     <version>0.0.1-SNAPSHOT</version>
 
     <dependencies>

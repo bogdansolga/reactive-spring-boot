@@ -10,7 +10,7 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>d01s03-spring-webflux-overview</artifactId>
+    <artifactId>d01s05-spring-webflux-overview</artifactId>
     <version>0.0.1-SNAPSHOT</version>
 
     <properties>

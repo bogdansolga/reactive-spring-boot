@@ -81,6 +81,11 @@ public class PostService {
         return lines;
     }
 
+    public PostDTO getRandomPost() {
+        final String post = posts.get(random.nextInt(posts.size()));
+        return new PostDTO(authors.get(random.nextInt(5)), post);
+    }
+
     public List<PostDTO> getRandomPosts() {
         final int postsNumber = posts.size();
         final int start = random.nextInt(postsNumber);

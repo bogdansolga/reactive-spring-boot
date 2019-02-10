@@ -1,6 +1,7 @@
 package net.safedata.reactive.intro.dto;
 
 import java.io.Serializable;
+import java.time.LocalTime;
 
 public class PostDTO implements Serializable {
 
@@ -29,5 +30,13 @@ public class PostDTO implements Serializable {
 
     public void setMessage(String message) {
         this.message = message;
+    }
+
+    @Override
+    public String toString() {
+        return new StringBuilder()
+                .append("[").append(author).append("] \t")
+                .append("[").append(LocalTime.now().toString().split("\\.")[0]).append("] ")
+                .append(message).toString();
     }
 }

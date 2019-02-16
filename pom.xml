@@ -9,8 +9,8 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
-	<name>'Reactive Spring Boot' training</name>
-	<description>The examples for the 'Reactive Spring Boot' training</description>
+	<name>'Reactive Programming with Spring' training</name>
+	<description>The examples for the 'Reactive Programming with Spring' training</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>

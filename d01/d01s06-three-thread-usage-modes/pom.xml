@@ -6,22 +6,14 @@
 
     <parent>
         <groupId>net.safedata</groupId>
-        <artifactId>reactive-webclient</artifactId>
+        <artifactId>d01</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>webclient-usage</artifactId>
+    <artifactId>d01s06-three-thread-usage-modes</artifactId>
     <version>0.0.1-SNAPSHOT</version>
 
     <dependencies>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-logging</artifactId>
-        </dependency>
 
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-webflux</artifactId>
-        </dependency>
     </dependencies>
 </project>

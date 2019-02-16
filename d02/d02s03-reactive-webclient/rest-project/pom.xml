@@ -6,7 +6,7 @@
 
     <parent>
         <groupId>net.safedata</groupId>
-        <artifactId>reactive-webclient</artifactId>
+        <artifactId>d02s03-reactive-webclient</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 

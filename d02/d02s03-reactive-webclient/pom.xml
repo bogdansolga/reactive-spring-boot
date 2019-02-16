@@ -6,11 +6,11 @@
 
     <parent>
         <groupId>net.safedata</groupId>
-        <artifactId>reactive-spring-boot-training</artifactId>
+        <artifactId>d02</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>reactive-webclient</artifactId>
+    <artifactId>d02s03-reactive-webclient</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
 

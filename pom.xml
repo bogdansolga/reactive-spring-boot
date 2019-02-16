@@ -23,11 +23,6 @@
 		<module>domain-model</module>
 		<module>d01</module>
 		<module>d02</module>
-
-		<module>reactive-webclient</module>
-		<module>spring-integration</module>
-		<module>spring-cloud-stream-consumer</module>
-		<module>spring-cloud-stream-publisher</module>
 	</modules>
 
 	<properties>

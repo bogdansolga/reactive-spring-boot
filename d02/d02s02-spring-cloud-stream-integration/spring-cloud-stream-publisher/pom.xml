@@ -6,7 +6,7 @@
 
     <parent>
         <groupId>net.safedata</groupId>
-        <artifactId>reactive-spring-boot-training</artifactId>
+        <artifactId>d02s02-spring-cloud-stream-integration</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 

@@ -10,10 +10,20 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>d01s04-flux-and-mono-characteristics</artifactId>
+    <artifactId>d01s04-the-reactor-execution-model-characteristics</artifactId>
     <version>0.0.1-SNAPSHOT</version>
 
     <dependencies>
+        <dependency>
+            <groupId>net.safedata</groupId>
+            <artifactId>domain-model</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-logging</artifactId>
+        </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-webflux</artifactId>

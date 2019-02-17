@@ -17,7 +17,7 @@
     <modules>
         <module>d01s02-simple-publisher-and-subscriber</module>
         <module>d01s03-simple-flux-and-mono-samples</module>
-        <module>d01s04-flux-and-mono-characteristics</module>
+        <module>d01s04-the-reactor-execution-model-characteristics</module>
         <module>d01s05-spring-webflux-overview</module>
         <module>d01s06-three-thread-usage-modes</module>
     </modules>

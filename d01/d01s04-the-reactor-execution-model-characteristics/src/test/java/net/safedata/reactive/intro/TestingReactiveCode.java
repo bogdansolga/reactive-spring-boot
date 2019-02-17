@@ -13,6 +13,8 @@ public class TestingReactiveCode {
 
     @Test
     public void testingReactivePipelinesUsingSchedulers() {
+        // the virtual time method uses a scheduler which tricks the Flux publisher about the actual delay,
+        // so that it won't wait the actual amount
         StepVerifier.withVirtualTime(() -> Flux.range(0, 5)
                                                .delayElements(Duration.ofSeconds(1)))
                     .expectSubscription()

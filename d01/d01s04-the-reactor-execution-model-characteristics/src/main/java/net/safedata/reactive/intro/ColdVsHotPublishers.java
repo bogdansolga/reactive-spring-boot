@@ -9,6 +9,11 @@ import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Consumer;
 
+/**
+ * A few examples to understand the difference between cold and hot publishers
+ *
+ * @author bogdan.solga
+ */
 public class ColdVsHotPublishers {
 
     private static final List<String> PRODUCT_NAMES = StoreSetup.getProductNames();

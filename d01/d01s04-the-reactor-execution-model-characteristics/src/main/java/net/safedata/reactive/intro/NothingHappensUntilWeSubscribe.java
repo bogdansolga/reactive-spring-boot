@@ -6,8 +6,7 @@ import reactor.core.publisher.Flux;
 import java.util.List;
 
 /**
- * A few examples to understand Project Reactor's {@link org.reactivestreams.Publisher} and {@link org.reactivestreams.Subscriber}
- * subscription model
+ * A few examples to understand Project Reactor's subscription model
  *
  * @author bogdan.solga
  */

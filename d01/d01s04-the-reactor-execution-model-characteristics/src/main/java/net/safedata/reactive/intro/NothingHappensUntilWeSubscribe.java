@@ -3,12 +3,9 @@ package net.safedata.reactive.intro;
 import net.safedata.reactive.spring.domain.Product;
 import net.safedata.reactive.spring.domain.StoreSetup;
 import reactor.core.publisher.Flux;
-import reactor.util.Logger;
-import reactor.util.Loggers;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 /**
@@ -18,8 +15,6 @@ import java.util.stream.Collectors;
  * @author bogdan.solga
  */
 public class NothingHappensUntilWeSubscribe {
-
-    private static final Logger LOGGER = Loggers.getLogger(NothingHappensUntilWeSubscribe.class);
 
     private static final List<String> PRODUCT_NAMES;
 

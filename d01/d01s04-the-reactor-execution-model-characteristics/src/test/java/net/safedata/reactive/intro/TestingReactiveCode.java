@@ -20,4 +20,14 @@ public class TestingReactiveCode {
                     .expectNextCount(5)
                     .verifyComplete();
     }
+
+    @Test
+    public void testingReactivePipelinesUsingSchedulersWithLongerTimes() {
+        StepVerifier.withVirtualTime(() -> Flux.range(0, 5)
+                                               .delayElements(Duration.ofMinutes(1)))
+                    .expectSubscription()
+                    .thenAwait(Duration.ofHours(1))
+                    .expectNextCount(5)
+                    .verifyComplete();
+    }
 }

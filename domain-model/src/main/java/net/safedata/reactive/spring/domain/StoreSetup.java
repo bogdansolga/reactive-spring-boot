@@ -1,8 +1,10 @@
 package net.safedata.reactive.spring.domain;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public final class StoreSetup {
 
@@ -23,6 +25,16 @@ public final class StoreSetup {
 
     public static Store getDefaultStore() {
         return defaultStore;
+    }
+
+    public static List<String> getProductNames() {
+        return defaultStore.getStoreSections()
+                           .stream()
+                           .map(section -> section.getProducts()
+                                                  .orElse(new ArrayList<>()))
+                           .flatMap(products -> products.stream()
+                                                        .map(Product::getName))
+                           .collect(Collectors.toList());
     }
 
     private StoreSetup() {}

@@ -15,9 +15,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.repository.ReactiveMongoRepository;
 import org.springframework.stereotype.Service;
-import org.springframework.web.reactive.function.server.RequestPredicates;
 import org.springframework.web.reactive.function.server.RouterFunction;
-import org.springframework.web.reactive.function.server.RouterFunctions;
 import org.springframework.web.reactive.function.server.ServerResponse;
 import reactor.core.publisher.Flux;
 
@@ -75,8 +73,8 @@ class TweetServiceConfiguration {
 
     @Bean
     RouterFunction<ServerResponse> routes(final TweetService tweetService) {
-        return RouterFunctions.route(RequestPredicates.GET("/tweets"), request -> ServerResponse.ok().body(tweetService.getAllTweets(), Tweet.class))
-                              .andRoute(RequestPredicates.GET("/hashTags"), request -> ServerResponse.ok().body(tweetService.getAllHashTags(), HashTag.class));
+        return route(GET("/tweets"), request -> ok().body(tweetService.getAllTweets(), Tweet.class))
+                              .andRoute(GET("/hashTags"), request -> ok().body(tweetService.getAllHashTags(), HashTag.class));
     }
 
     @Bean

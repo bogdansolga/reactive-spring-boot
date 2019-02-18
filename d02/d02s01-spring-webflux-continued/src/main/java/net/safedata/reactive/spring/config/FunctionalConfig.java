@@ -13,6 +13,7 @@ import java.time.Instant;
 
 import static org.springframework.web.reactive.function.server.RequestPredicates.GET;
 import static org.springframework.web.reactive.function.server.RouterFunctions.route;
+import static org.springframework.web.reactive.function.server.ServerResponse.ok;
 
 @Configuration
 public class FunctionalConfig {
@@ -20,23 +21,22 @@ public class FunctionalConfig {
     @Bean
     public RouterFunction<ServerResponse> routerFunction() {
         final Flux<Product> aSimpleProduct = Flux.just(new Product(1, "Tablet", 20));
-        final Flux<Product> severalProducts = Flux.<Product>generate(sink -> sink.next(new Product(10, "Phone", 20))).take(5);
+        final Flux<Product> severalProducts =
+                Flux.<Product>generate(sink -> sink.next(new Product(10, "Phone", 20))).take(5);
         final Flux<Product> productsStream =
                 Flux.<Product>generate(sink -> sink.next(new Product(10, "The product for " + Instant.now(), 200)))
                         .delayElements(Duration.ofSeconds(1));
 
         final RouterFunction<ServerResponse> routerFunction = route(GET("/fn/product"),
-                    request -> ServerResponse.ok().body(aSimpleProduct, Product.class))
-                .andRoute(GET("/fn/many"), request -> ServerResponse.ok()
-                                                                    .contentType(MediaType.APPLICATION_JSON_UTF8)
-                                                                    .body(severalProducts, Product.class))
-                .andRoute(GET("/fn/stream"), request -> ServerResponse.ok()
-                                                                      .contentType(MediaType.TEXT_EVENT_STREAM)
-                                                                      .body(productsStream, Product.class));
+                                                                 request -> ok().body(aSimpleProduct, Product.class))
+                .andRoute(GET("/fn/many"), request -> ok().contentType(MediaType.APPLICATION_JSON_UTF8)
+                                                                 .body(severalProducts, Product.class))
+                .andRoute(GET("/fn/stream"), request -> ok().contentType(MediaType.TEXT_EVENT_STREAM)
+                                                                   .body(productsStream, Product.class));
 
         // dynamic linking / registration
         if (Math.random() < 10) {
-            routerFunction.andRoute(GET("/random"), request -> ServerResponse.ok().body(Flux.just("Random URI"), String.class));
+            routerFunction.andRoute(GET("/random"), request -> ok().body(Flux.just("Random URI"), String.class));
         }
 
         return routerFunction;

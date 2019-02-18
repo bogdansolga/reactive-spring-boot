@@ -7,17 +7,14 @@
 
     <parent>
         <groupId>net.safedata</groupId>
-        <artifactId>reactive-spring-boot-training</artifactId>
+        <artifactId>d02</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>d01</artifactId>
+    <artifactId>d02s02-three-thread-usage-modes</artifactId>
     <version>0.0.1-SNAPSHOT</version>
 
-    <modules>
-        <module>d01s02-simple-publisher-and-subscriber</module>
-        <module>d01s03-simple-flux-and-mono-samples</module>
-        <module>d01s04-the-reactor-execution-model-characteristics</module>
-        <module>d01s05-spring-webflux-overview</module>
-    </modules>
+    <dependencies>
+
+    </dependencies>
 </project>

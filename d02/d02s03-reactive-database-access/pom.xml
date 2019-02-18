@@ -7,20 +7,15 @@
 
     <parent>
         <groupId>net.safedata</groupId>
-        <artifactId>reactive-spring-boot-training</artifactId>
+        <artifactId>d02</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>d02</artifactId>
+    <artifactId>d02s03-reactive-database-access</artifactId>
     <version>0.0.1-SNAPSHOT</version>
 
     <modules>
-        <module>d02s01-spring-webflux-continued</module>
-        <module>d02s02-three-thread-usage-modes</module>
-        <module>d02s03-reactive-database-access</module>
-        <module>d02s04-reactive-spring-cloud-stream-integration</module>
-        <module>d02s05-reactive-spring-integration</module>
-        <module>d02s06-reactive-webclient</module>
-        <module>d02s07-testing-reactive-code</module>
+        <module>d02s03e01-reactive-mongodb-access</module>
+        <module>d02s03e02-reactive-postgresql-access</module>
     </modules>
 </project>

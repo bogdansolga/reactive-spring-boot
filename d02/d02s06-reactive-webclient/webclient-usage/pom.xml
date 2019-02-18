@@ -6,21 +6,17 @@
 
     <parent>
         <groupId>net.safedata</groupId>
-        <artifactId>d01</artifactId>
+        <artifactId>d02s06-reactive-webclient</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>d01s05-spring-webflux-overview</artifactId>
+    <artifactId>webclient-usage</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-
-    <properties>
-        <kotlin.version>1.3.11</kotlin.version>
-    </properties>
 
     <dependencies>
         <dependency>
-            <groupId>net.safedata</groupId>
-            <artifactId>domain-model</artifactId>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-logging</artifactId>
         </dependency>
 
         <dependency>

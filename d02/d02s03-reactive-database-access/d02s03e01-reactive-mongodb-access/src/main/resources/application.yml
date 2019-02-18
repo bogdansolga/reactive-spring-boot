@@ -4,6 +4,7 @@ logging:
     root: info
     org:
       apache: warn
+      mongodb: warn
       springframework: warn
     reactor: error
 

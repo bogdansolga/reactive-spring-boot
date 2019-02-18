@@ -6,21 +6,30 @@
 
     <parent>
         <groupId>net.safedata</groupId>
-        <artifactId>d01</artifactId>
+        <artifactId>d02</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>d01s05-spring-webflux-overview</artifactId>
+    <artifactId>d02s01-spring-webflux-continued</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-
-    <properties>
-        <kotlin.version>1.3.11</kotlin.version>
-    </properties>
 
     <dependencies>
         <dependency>
             <groupId>net.safedata</groupId>
             <artifactId>domain-model</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.jetbrains.kotlin</groupId>
+            <artifactId>kotlin-stdlib-jdk8</artifactId>
+            <version>${kotlin.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.jetbrains.kotlin</groupId>
+            <artifactId>kotlin-test</artifactId>
+            <version>${kotlin.version}</version>
+            <scope>test</scope>
         </dependency>
 
         <dependency>

@@ -80,14 +80,14 @@ class TweetServiceConfiguration {
     @Bean
     @ConditionalOnProperty("testTweets")
     ApplicationRunner runner(final TweetRepository tweetRepository) {
-        final Author bogdan = new Author("bogdan");
-        final Author vio = new Author("vio");
+        final Author john = new Author("john");
+        final Author jane = new Author("jane");
 
         final Flux<Tweet> tweets = Flux.just(
-                new Tweet("#2x2 was the best #marathon for #2018", bogdan),
-                new Tweet("#Scenic will be the greatest #marathon of #2019", bogdan),
-                new Tweet("In #2019 I will run my first #100k", bogdan),
-                new Tweet("I will also run #Scenic and I will improve my #MPC time in #2019", vio)
+                new Tweet("A #reactive system is an #architectural style that allows multiple individual #applications to coalesce as a single unit", john),
+                new Tweet("It’s possible to write a single application in a #reactive style, using #reactive programming)", jane),
+                new Tweet("#Functional #reactive programming, commonly called FRP, is most frequently #misunderstood", john),
+                new Tweet("Reactive programming, not to be confused with functional #reactive programming, is a subset of #asynchronous programming", jane)
         );
 
         return args ->
@@ -109,7 +109,7 @@ class Author {
         this.name = name;
     }
 
-    public String getName() {
+    String getName() {
         return name;
     }
 

@@ -21,7 +21,7 @@ public class ProductController {
         return Mono.just(new Product(20, "Pixel 3", 200));
     }
 
-    @GetMapping
+    @GetMapping("/array")
     public Flux<Product> productsFromArray() {
         return Flux.fromArray(
                 new Product[] {

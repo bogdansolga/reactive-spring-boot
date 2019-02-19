@@ -1,3 +1,19 @@
+# the name of the current app
+spring:
+  application:
+    name: spring-reactive-database-access-demo
+
+  # DATASOURCE (DataSourceAutoConfiguration & DataSourceProperties)
+  datasource:
+    name: spring_boot
+    password: postgres
+    username: postgres
+
+  # indent the returned JSON responses
+  jackson:
+    serialization:
+      INDENT_OUTPUT: true
+
 # logging settings
 logging:
   level:
@@ -5,13 +21,6 @@ logging:
     org:
       apache: warn
       springframework: warn
-    reactor: error
 
   pattern:
-    console: '%clr([%date{HH:mm:ss}]){faint} %clr(%2p) %clr(%-30.30logger{36}){cyan} %m%n%wex'
-
-spring:
-  jackson:
-    serialization:
-      indent_output: true
-    default-property-inclusion: non_null
+    console: '%clr([%date{HH:mm:ss.SSS}]){faint} %clr(%2p) %clr(%-40.40logger{36}){cyan} %m%n%wex'

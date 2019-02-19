@@ -13,7 +13,41 @@
     <artifactId>d02s03e02-reactive-postgresql-access</artifactId>
     <version>0.0.1-SNAPSHOT</version>
 
-    <dependencies>
+    <properties>
+        <spring-data-r2dbc.version>1.0.0.BUILD-SNAPSHOT</spring-data-r2dbc.version>
+        <r2dbc-postgresql.version>1.0.0.M6</r2dbc-postgresql.version>
+    </properties>
 
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-webflux</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-r2dbc</artifactId>
+            <version>${spring-data-r2dbc.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.r2dbc</groupId>
+            <artifactId>r2dbc-postgresql</artifactId>
+            <version>${r2dbc-postgresql.version}</version>
+        </dependency>
     </dependencies>
+
+    <repositories>
+        <repository>
+            <id>spring-libs-snapshot</id>
+            <url>https://repo.spring.io/libs-snapshot</url>
+        </repository>
+    </repositories>
+
+    <pluginRepositories>
+        <pluginRepository>
+            <id>spring-plugins-snapshot</id>
+            <url>https://repo.spring.io/plugins-snapshot</url>
+        </pluginRepository>
+    </pluginRepositories>
 </project>

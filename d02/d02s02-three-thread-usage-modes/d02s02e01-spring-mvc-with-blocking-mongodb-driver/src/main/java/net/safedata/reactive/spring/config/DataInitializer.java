@@ -1,36 +1,37 @@
 package net.safedata.reactive.spring.config;
 
+import net.safedata.reactive.spring.domain.StoreSetup;
 import net.safedata.reactive.spring.domain.entity.Product;
 import net.safedata.reactive.spring.domain.repository.ProductRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
+import org.springframework.context.annotation.Bean;
+import org.springframework.data.mongodb.core.CollectionOptions;
+import org.springframework.data.mongodb.core.MongoOperations;
 import org.springframework.stereotype.Component;
 
-import java.util.Arrays;
 import java.util.Random;
-import java.util.concurrent.atomic.AtomicInteger;
 
 @Component
-public class DataInitializer implements ApplicationRunner {
+public class DataInitializer {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(DataInitializer.class);
 
     private final Random random = new Random(500);
 
-    private final ProductRepository productRepository;
+    @Bean
+    public ApplicationRunner applicationRunner(final MongoOperations mongoOperations,
+                                               final ProductRepository productRepository) {
+        return args -> {
+            mongoOperations.dropCollection(Product.class);
+            mongoOperations.createCollection(Product.class, CollectionOptions.empty()
+                                                                             .size(200));
 
-    @Autowired
-    public DataInitializer(final ProductRepository productRepository) {
-        this.productRepository = productRepository;
-    }
+            StoreSetup.getProductNames()
+                      .forEach(item -> productRepository.save(new Product(random.nextInt(50), item, 200)));
 
-    @Override
-    public void run(ApplicationArguments args) {
-        final AtomicInteger atomicInteger = new AtomicInteger(1);
-        Arrays.asList("Samsung Apple Google HP Amazon".split("\\s"))
-              .forEach(item -> productRepository.save(new Product(atomicInteger.getAndIncrement(), item, 200)));
+            LOGGER.info("There are now {} products in the MongoDB database", productRepository.count());
+        };
     }
 }

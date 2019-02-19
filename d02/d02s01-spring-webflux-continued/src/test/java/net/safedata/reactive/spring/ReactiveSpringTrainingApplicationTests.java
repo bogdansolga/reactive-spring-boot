@@ -1,7 +1,8 @@
 package net.safedata.reactive.spring;
 
-import net.safedata.reactive.spring.domain.entity.Product;
+import net.safedata.reactive.spring.domain.Product;
 import net.safedata.reactive.spring.service.ProductService;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -18,7 +19,7 @@ import java.time.Duration;
 import static org.junit.Assert.assertEquals;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = ReactiveMongoDBAccessApplication.class)
+@SpringBootTest(classes = SpringWebFluxContinuedApplication.class)
 public class ReactiveSpringTrainingApplicationTests {
 
 	@Autowired
@@ -43,7 +44,7 @@ public class ReactiveSpringTrainingApplicationTests {
 														 .take(10)
 														 .collectList())
 					.thenAwait(Duration.ofMinutes(1))
-					.consumeNextWith(list -> assertEquals(list.size(), 10))
+					.consumeNextWith(list -> Assert.assertEquals(list.size(), 10))
 					.verifyComplete();
 	}
 

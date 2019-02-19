@@ -18,9 +18,9 @@
         <module>d02s01-spring-webflux-continued</module>
         <module>d02s02-spring-mvc-vs-spring-webflux-thread-model</module>
         <module>d02s03-reactive-database-access</module>
-        <module>d02s04-reactive-spring-cloud-stream-integration</module>
-        <module>d02s05-reactive-spring-integration</module>
-        <module>d02s06-reactive-webclient</module>
-        <module>d02s07-testing-reactive-code</module>
+        <module>d02s04-reactive-webclient</module>
+        <module>d02s05-testing-reactive-code</module>
+        <module>d02s06-reactive-spring-cloud-stream-integration</module>
+        <module>d02s07-reactive-spring-integration</module>
     </modules>
 </project>

@@ -11,11 +11,18 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>d02s04-reactive-spring-cloud-stream-integration</artifactId>
+    <artifactId>d02s04-reactive-webclient</artifactId>
     <version>0.0.1-SNAPSHOT</version>
 
     <modules>
-        <module>spring-cloud-stream-publisher</module>
-        <module>spring-cloud-stream-consumer</module>
+        <module>rest-project</module>
+        <module>webclient-usage</module>
     </modules>
+
+    <dependencies>
+        <dependency>
+            <groupId>net.safedata</groupId>
+            <artifactId>domain-model</artifactId>
+        </dependency>
+    </dependencies>
 </project>

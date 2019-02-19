@@ -6,17 +6,22 @@
 
     <parent>
         <groupId>net.safedata</groupId>
-        <artifactId>d02s06-reactive-webclient</artifactId>
+        <artifactId>d02s04-reactive-webclient</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>rest-project</artifactId>
+    <artifactId>webclient-usage</artifactId>
     <version>0.0.1-SNAPSHOT</version>
 
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
+            <artifactId>spring-boot-starter-logging</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-webflux</artifactId>
         </dependency>
     </dependencies>
 </project>

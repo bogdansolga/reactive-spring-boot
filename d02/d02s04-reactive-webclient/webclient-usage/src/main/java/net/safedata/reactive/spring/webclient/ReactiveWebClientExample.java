@@ -24,6 +24,10 @@ public class ReactiveWebClientExample {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ReactiveWebClientExample.class);
 
+    private final WebClient webClient = WebClient.create("http://localhost:8080");
+
+    private final int productsCount = 10;
+
     public static void main(String[] args) {
         final SpringApplication application = new SpringApplication(ReactiveWebClientExample.class);
         application.setBannerMode(Banner.Mode.OFF);
@@ -33,38 +37,62 @@ public class ReactiveWebClientExample {
 
     @Bean
     ApplicationRunner applicationRunner() {
-        final WebClient webClient = WebClient.create("http://localhost:8080");
         return args -> {
-            System.out.println();
-
-            final int productsCount = 10;
-
             final Instant start = Instant.now();
-            /*
-            final List<Mono<Product>> products = IntStream.range(0, productsCount)
-                                                          .boxed()
-                                                          .map(id -> webClient.get()
-                                                                              .uri("/product/{id}", id)
-                                                                              .retrieve()
-                                                                              .bodyToMono(Product.class))
-                                                          .collect(Collectors.toList());
 
-            Mono.when(products)
-                .block();
-            */
+            sequentialCalls();
 
-            Flux.range(0, productsCount)
-                .flatMap(id -> webClient.get()
-                                        .uri("/product/{id}", id)
-                                        //.retrieve() // gives a straight path to the response body
-                                        //.bodyToMono(Product.class))
-                                        .exchange() // if processing needs to be done before getting the body
-                                        // --> perhaps it's very large, or needing to access the HTTP status or headers
-                                        .flatMap(response -> response.bodyToMono(Product.class))) // can also nest other client calls, if needed
-                .blockLast();
+            parallelCallsUsingStreams();
+            parallelCallsUsingFluxRangeUsingProcessing();
+            parallelCallsUsingFluxRangeWithoutProcessing();
 
             System.out.println();
             LOGGER.info("Getting all the {} products took {} ms", productsCount, Duration.between(start, Instant.now()).toMillis());
         };
+    }
+
+    private void sequentialCalls() {
+        final List<Product> products = IntStream.range(0, productsCount)
+                                               .boxed()
+                                               .map(id -> webClient.get()
+                                                                   .uri("/product/{id}", id)
+                                                                   .retrieve()
+                                                                   .bodyToMono(Product.class)
+                                                                   .block())
+                                               .collect(Collectors.toList());
+        LOGGER.info("Got {} products", products.size());
+    }
+
+    private void parallelCallsUsingStreams() {
+        final List<Mono<Product>> products = IntStream.range(0, productsCount)
+                                                      .boxed()
+                                                      .map(id -> webClient.get()
+                                                                          .uri("/product/{id}", id)
+                                                                          .retrieve()
+                                                                          .bodyToMono(Product.class))
+                                                      .collect(Collectors.toList());
+
+        Mono.when(products)
+            .block();
+    }
+
+    private void parallelCallsUsingFluxRangeUsingProcessing() {
+        Flux.range(0, productsCount)
+            .flatMap(id -> webClient.get()
+                                    .uri("/product/{id}", id)
+                                    // if processing needs to be done before getting the body
+                                    // --> perhaps it's very large, or needing to access the HTTP status or headers
+                                    .exchange()
+                                    .flatMap(response -> response.bodyToMono(Product.class))) // can also nest other client calls, if needed
+            .blockLast();
+    }
+
+    private void parallelCallsUsingFluxRangeWithoutProcessing() {
+        Flux.range(0, productsCount)
+            .flatMap(id -> webClient.get()
+                                    .uri("/product/{id}", id)
+                                    .retrieve() // gives a straight path to the response body
+                                    .bodyToMono(Product.class))
+            .blockLast();
     }
 }

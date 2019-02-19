@@ -16,11 +16,9 @@ import reactor.test.StepVerifier;
 
 import java.time.Duration;
 
-import static org.junit.Assert.assertEquals;
-
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = SpringWebFluxContinuedApplication.class)
-public class ReactiveSpringTrainingApplicationTests {
+@SpringBootTest(classes = ReactiveSpringApplication.class)
+public class ReactiveSpringApplicationTests {
 
 	@Autowired
 	private ApplicationContext applicationContext;
@@ -60,7 +58,7 @@ public class ReactiveSpringTrainingApplicationTests {
 	@Test
 	public void givenTheMultipleProductsEndpointExposesProducts_whenGettingTheProducts_thenAllGood() {
 		webTestClient.get()
-					 .uri("/fn/many")
+					 .uri("/functional/many")
 					 .accept(MediaType.APPLICATION_JSON_UTF8)
 					 .exchange() // the only blocking call --> we don't want the test to be done before retrieving the response
 					 .expectStatus()

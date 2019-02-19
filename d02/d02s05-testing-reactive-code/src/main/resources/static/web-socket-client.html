@@ -1,0 +1,13 @@
+<html>
+    <body onload="run()">
+        <script>
+            function run() {
+                var webSocketClient = new WebSocket("ws://localhost:8080/webSocket/product");
+                webSocketClient.onmessage = function (message) {
+                    //console.log("Message: '" + message.data + "'");
+                    document.body.innerHTML += '<p>' + message.data + '</p>'; // just for quick HTML adding
+                }
+            }
+        </script>
+    </body>
+</html>

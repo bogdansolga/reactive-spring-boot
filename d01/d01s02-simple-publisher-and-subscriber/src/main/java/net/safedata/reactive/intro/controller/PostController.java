@@ -32,7 +32,7 @@ public class PostController {
             value = "/stream",
             produces = MediaType.TEXT_EVENT_STREAM_VALUE
     )
-    public Flux<PostDTO> infiniteStreamOfProducts() {
+    public Flux<PostDTO> infiniteStreamOfPosts() {
         return Flux.<PostDTO>generate(sink -> sink.next(postService.getRandomPost()))
                    .delayElements(Duration.ofMillis(100));
     }

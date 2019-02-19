@@ -1,6 +1,7 @@
 package net.safedata.reactive.spring.domain;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.List;
 import java.util.Objects;
@@ -11,24 +12,13 @@ public class Product extends AbstractEntity {
     private final int id;
     private final String name;
     private final double price;
-    private final Discount discount;
-    private final List<String> tags;
 
     @JsonCreator
-    public Product(final int id, final String name, final double price, final Discount discount) {
+    public Product(@JsonProperty("id") final int id, @JsonProperty("name") final String name,
+                   @JsonProperty("price") final double price) {
         this.id = id;
         this.name = name;
         this.price = price;
-        this.discount = discount;
-        this.tags = null;
-    }
-
-    public Product(final int id, final String name, final double price) {
-        this.id = id;
-        this.name = name;
-        this.price = price;
-        this.discount = null;
-        this.tags = null;
     }
 
     public int getId() {
@@ -41,14 +31,6 @@ public class Product extends AbstractEntity {
 
     public double getPrice() {
         return price;
-    }
-
-    public Optional<Discount> getDiscount() {
-        return Optional.ofNullable(discount);
-    }
-
-    public Optional<List<String>> getTags() {
-        return Optional.ofNullable(tags);
     }
 
     @Override

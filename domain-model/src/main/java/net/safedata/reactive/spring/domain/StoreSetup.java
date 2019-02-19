@@ -41,8 +41,8 @@ public final class StoreSetup {
 
     private static List<Product> buildDefaultTablets() {
         return Arrays.asList(
-                new Product(1, "Google Nexus 7", 200, new Discount(50, Discount.Type.Value)),
-                new Product(2, "Apple iPad Pro 9.7", 300, new Discount(10, Discount.Type.Percent)),
+                new Product(1, "Google Nexus 7", 200),
+                new Product(2, "Apple iPad Pro 9.7", 300),
                 new Product(3, "Samsung Galaxy Tab S2", 350),
                 new Product(4, "Microsoft Surface Pro 4", 400)
         );

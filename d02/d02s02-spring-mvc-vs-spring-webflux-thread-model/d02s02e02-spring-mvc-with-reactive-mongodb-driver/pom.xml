@@ -6,22 +6,22 @@
 
     <parent>
         <groupId>net.safedata</groupId>
-        <artifactId>d02s02-three-thread-usage-modes</artifactId>
+        <artifactId>d02s02-spring-mvc-vs-spring-webflux-thread-model</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>d02s02e03-spring-webflux-with-reactive-mongodb-driver</artifactId>
+    <artifactId>d02s02e02-spring-mvc-with-reactive-mongodb-driver</artifactId>
     <version>0.0.1-SNAPSHOT</version>
 
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-webflux</artifactId>
+            <artifactId>spring-boot-starter-data-mongodb-reactive</artifactId>
         </dependency>
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-mongodb-reactive</artifactId>
+            <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
     </dependencies>
 </project>

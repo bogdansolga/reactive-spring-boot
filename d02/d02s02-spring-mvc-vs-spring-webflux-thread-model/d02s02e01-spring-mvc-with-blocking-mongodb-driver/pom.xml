@@ -6,7 +6,7 @@
 
     <parent>
         <groupId>net.safedata</groupId>
-        <artifactId>d02s02-three-thread-usage-modes</artifactId>
+        <artifactId>d02s02-spring-mvc-vs-spring-webflux-thread-model</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 

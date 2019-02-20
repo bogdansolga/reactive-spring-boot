@@ -11,11 +11,11 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>d02s06-reactive-spring-cloud-stream-integration</artifactId>
+    <artifactId>d02s06-integrations-with-other-spring-projects</artifactId>
     <version>0.0.1-SNAPSHOT</version>
 
     <modules>
-        <module>spring-cloud-stream-publisher</module>
-        <module>spring-cloud-stream-consumer</module>
+        <module>d02s06e01-spring-cloud-stream</module>
+        <module>d02s06e02-spring-integration</module>
     </modules>
 </project>

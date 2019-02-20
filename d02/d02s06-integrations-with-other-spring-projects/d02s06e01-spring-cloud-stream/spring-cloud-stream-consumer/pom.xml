@@ -6,11 +6,11 @@
 
     <parent>
         <groupId>net.safedata</groupId>
-        <artifactId>d02</artifactId>
+        <artifactId>d02s06e01-spring-cloud-stream</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>d02s06-reactive-spring-integration</artifactId>
+    <artifactId>spring-cloud-stream-consumer</artifactId>
     <version>0.0.1-SNAPSHOT</version>
 
     <dependencies>
@@ -20,8 +20,8 @@
         </dependency>
 
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-integration</artifactId>
+            <groupId>net.safedata</groupId>
+            <artifactId>domain-model</artifactId>
         </dependency>
 
         <dependency>
@@ -42,16 +42,6 @@
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-stream-reactive</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-stream-test-support</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.integration</groupId>
-            <artifactId>spring-integration-file</artifactId>
         </dependency>
 
         <dependency>

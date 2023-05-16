@@ -16,6 +16,5 @@
 
     <modules>
         <module>d02s06e01-spring-cloud-stream</module>
-        <module>d02s06e02-spring-integration</module>
     </modules>
 </project>

@@ -19,9 +19,7 @@ spring:
   cloud:
     stream:
       bindings:
-        input:
-          destination: orders
-          #group: orders-group
+        consumer-in-0.destination: orders
 
   kafka:
     bootstrap-servers: localhost:9092

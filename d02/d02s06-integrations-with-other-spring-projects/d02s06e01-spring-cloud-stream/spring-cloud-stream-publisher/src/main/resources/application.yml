@@ -19,9 +19,7 @@ spring:
   cloud:
     stream:
       bindings:
-        output:
-          destination: orders
-          #group: orders-group
+        producer-out-0.destination: orders
 
   kafka:
     bootstrap-servers: localhost:9092

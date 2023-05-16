@@ -59,7 +59,7 @@ public class PublishOnAndSubscribeOn {
     }
 
     private static void createNewSchedulers() {
-        final Scheduler newScheduler = Schedulers.newElastic("el");
+        final Scheduler newScheduler = Schedulers.newBoundedElastic(4, 100, "el");
         //final Scheduler newScheduler = Schedulers.newParallel("par", Runtime.getRuntime().availableProcessors() / 2);
         //final Scheduler newScheduler = Schedulers.newSingle("s");
 

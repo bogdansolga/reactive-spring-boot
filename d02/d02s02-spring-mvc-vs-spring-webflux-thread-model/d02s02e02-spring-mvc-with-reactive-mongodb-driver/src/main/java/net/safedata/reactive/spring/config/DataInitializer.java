@@ -1,5 +1,7 @@
 package net.safedata.reactive.spring.config;
 
+import com.mongodb.reactivestreams.client.MongoClient;
+import com.mongodb.reactivestreams.client.MongoClients;
 import net.safedata.reactive.spring.domain.StoreSetup;
 import net.safedata.reactive.spring.domain.entity.Product;
 import net.safedata.reactive.spring.domain.repository.ProductRepository;
@@ -9,6 +11,7 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.mongodb.core.CollectionOptions;
 import org.springframework.data.mongodb.core.MongoOperations;
+import org.springframework.data.mongodb.core.ReactiveMongoOperations;
 import org.springframework.stereotype.Component;
 
 import java.util.Random;
@@ -21,12 +24,19 @@ public class DataInitializer {
     private final Random random = new Random(500);
 
     @Bean
-    public ApplicationRunner applicationRunner(final MongoOperations mongoOperations,
+    public MongoClient mongoClient() {
+        return MongoClients.create();
+    }
+
+    @Bean
+    public ApplicationRunner applicationRunner(final ReactiveMongoOperations mongoOperations,
                                                final ProductRepository productRepository) {
         return args -> {
-            mongoOperations.dropCollection(Product.class);
+            mongoOperations.dropCollection(Product.class)
+                           .subscribe();
             mongoOperations.createCollection(Product.class, CollectionOptions.empty()
-                                                                             .size(10));
+                                                                             .size(10))
+                           .subscribe();
 
             StoreSetup.getProductNames()
                       .forEach(item -> productRepository.save(new Product(random.nextInt(50), item, 200))

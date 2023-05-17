@@ -34,7 +34,11 @@ public class MovieController {
         // cancel and refund asynchronously
         request.map(t -> new TicketRequest(t.requestId(), TicketStatus.TICKET_CANCELLED))
                       .doOnNext(t -> LOGGER.info("Cancelling the ticket with the ID '{}', the status is now '{}'", t.requestId(), t.ticketStatus()))
-                      .subscribe();
+                      .subscribe(
+                              t -> LOGGER.info("{}", t),                    // the success Consumer
+                              ex -> LOGGER.error("{}",ex.getMessage(), ex), // the error Consumer
+                              () -> LOGGER.info("onComplete")         // the onComplete handler
+                      );
     }
 
     @MessageMapping(Routes.TICKET_PURCHASE)

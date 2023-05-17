@@ -29,11 +29,11 @@ public class MovieController {
     }
 
     @MessageMapping("ticket.cancel")
-    public Mono<String> cancelTicket(Mono<TicketRequest> request) {
+    public void cancelTicket(Mono<TicketRequest> request) {
         // cancel and refund asynchronously
-        return request.map(t -> new TicketRequest(t.requestId(), TicketStatus.TICKET_CANCELLED))
+        request.map(t -> new TicketRequest(t.requestId(), TicketStatus.TICKET_CANCELLED))
                       .doOnNext(t -> LOGGER.info("Cancelling the ticket with the ID '{}', the status is now '{}'", t.requestId(), t.ticketStatus()))
-                      .flatMap(ticketRequest -> Mono.just("The ticket with the ID " + ticketRequest.requestId() + " was cancelled"));
+                      .subscribe();
     }
 
     @MessageMapping("ticket.purchase")

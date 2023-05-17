@@ -29,7 +29,7 @@ public class RequestingController {
     public Mono<Void> fireAndForget() {
         return rSocketRequesterMono.flatMap(requester -> requester.route(Routes.TICKET_CANCEL)
                                                                   .data(new TicketRequest(RANDOM.nextInt(200), TicketStatus.TICKET_ISSUED))
-                                                                  .retrieveMono(Void.class));
+                                                                  .send());
     }
 
     @GetMapping("/request")

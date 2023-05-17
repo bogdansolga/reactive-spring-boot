@@ -1,6 +1,7 @@
 package net.safedata.reactive.spring.rsocket.web;
 
 import net.safedata.reactive.spring.rsocket.domain.MovieScene;
+import net.safedata.reactive.spring.rsocket.domain.Routes;
 import net.safedata.reactive.spring.rsocket.domain.TicketRequest;
 import net.safedata.reactive.spring.rsocket.domain.TicketStatus;
 import net.safedata.reactive.spring.rsocket.service.MovieService;
@@ -28,7 +29,7 @@ public class MovieController {
         this.movieService = movieService;
     }
 
-    @MessageMapping("ticket.cancel")
+    @MessageMapping(Routes.TICKET_CANCEL)
     public void cancelTicket(Mono<TicketRequest> request) {
         // cancel and refund asynchronously
         request.map(t -> new TicketRequest(t.requestId(), TicketStatus.TICKET_CANCELLED))
@@ -36,28 +37,26 @@ public class MovieController {
                       .subscribe();
     }
 
-    @MessageMapping("ticket.purchase")
-    public Mono<TicketRequest> purchaseTicket(Mono<TicketRequest> request){
+    @MessageMapping(Routes.TICKET_PURCHASE)
+    public Mono<TicketRequest> purchaseTicket(Mono<TicketRequest> request) {
         return request.doOnNext(t -> new TicketRequest(t.requestId(), TicketStatus.TICKET_ISSUED))
-                      .doOnNext(t -> System.out.println("Purchase ticket: " + t.requestId() + " : " + t.ticketStatus()));
-
+                      .doOnNext(t -> LOGGER.info("Purchased the ticket {}, status: {}", t.requestId(), t.ticketStatus()));
     }
 
-    @MessageMapping("tv.movie")
-    public Flux<MovieScene> playMovie(Flux<Integer> sceneIndex){
-        return sceneIndex
-                .map(index -> index - 1) // list is 0 based index
-                .map(this.movieService::getScene)
-                .delayElements(Duration.ofSeconds(1));
+    @MessageMapping(Routes.MOVIE_SCENES)
+    public Flux<MovieScene> movieScenes(Flux<Integer> sceneIndex) {
+        return sceneIndex.map(index -> index - 1) // list is 0 based index
+                         .map(this.movieService::getScene)
+                         .delayElements(Duration.ofMillis(500));
     }
 
-    @MessageMapping("movie.stream")
-    public Flux<MovieScene> playMovie(Mono<TicketRequest> request){
+    @MessageMapping(Routes.MOVIE_STREAM)
+    public Flux<MovieScene> playMovie(Mono<TicketRequest> request) {
         return request.map(t -> t.ticketStatus().equals(TicketStatus.TICKET_ISSUED) ?
                               this.movieService.getScenes() : List.of())
                       .flatMapIterable(Function.identity())
                       .cast(MovieScene.class)
-                      .delayElements(Duration.ofSeconds(1));
+                      .delayElements(Duration.ofMillis(500));
     }
 
 }

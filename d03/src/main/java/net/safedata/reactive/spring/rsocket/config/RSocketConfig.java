@@ -25,8 +25,10 @@ public class RSocketConfig {
     }
 
     @Bean
-    public Mono<RSocketRequester> getRSocketRequester(RSocketRequester.Builder builder){
+    public Mono<RSocketRequester> getRSocketRequester(RSocketRequester.Builder builder,
+                                                      RSocketStrategies rSocketStrategies) {
         return Mono.just(builder.rsocketConnector(rSocketConnector -> rSocketConnector.reconnect(Retry.fixedDelay(2, Duration.ofSeconds(2))))
+                                .rsocketStrategies(rSocketStrategies)
                                 .dataMimeType(MediaType.APPLICATION_CBOR)
                                 .transport(TcpClientTransport.create(9899)));
     }

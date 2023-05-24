@@ -22,11 +22,6 @@
 
     <dependencies>
         <dependency>
-            <groupId>de.flapdoodle.embed</groupId>
-            <artifactId>de.flapdoodle.embed.mongo.spring30x</artifactId>
-        </dependency>
-
-        <dependency>
             <groupId>net.safedata</groupId>
             <artifactId>domain-model</artifactId>
         </dependency>

@@ -43,12 +43,6 @@
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
-				<groupId>de.flapdoodle.embed</groupId>
-				<artifactId>de.flapdoodle.embed.mongo.spring30x</artifactId>
-				<version>${embedded-mongo.version}</version>
-			</dependency>
-
-			<dependency>
 				<groupId>io.projectreactor</groupId>
 				<artifactId>reactor-bom</artifactId>
 				<version>${reactor-bom.version}</version>

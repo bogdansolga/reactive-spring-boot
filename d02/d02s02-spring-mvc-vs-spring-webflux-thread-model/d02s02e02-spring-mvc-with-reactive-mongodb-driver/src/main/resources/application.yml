@@ -2,8 +2,6 @@
 logging:
   level:
     root: info
-    de:
-      flapdoodle: error
     org:
       apache: warn
       mongodb: warn
@@ -20,9 +18,3 @@ spring:
     serialization:
       indent_output: true
     default-property-inclusion: non_null
-
-de:
-  flapdoodle:
-    mongodb:
-      embedded:
-        version: 4.6.2

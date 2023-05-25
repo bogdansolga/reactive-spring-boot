@@ -31,7 +31,7 @@ public class ProductControllerTest {
                 .thenReturn(Flux.just(new Product(1, "The first product", 100)));
 
         webClient.get().uri("/product")
-                 .accept(MediaType.APPLICATION_JSON_UTF8)
+                 .accept(MediaType.APPLICATION_JSON)
                  .exchange()
                  .expectStatus()
                     .isOk()

@@ -2,8 +2,6 @@
 logging:
   level:
     root: info
-    de:
-      flapdoodle: error
     org:
       apache: warn
       mongodb: warn

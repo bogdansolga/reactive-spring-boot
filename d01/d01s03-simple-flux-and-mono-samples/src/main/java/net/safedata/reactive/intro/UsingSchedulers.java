@@ -15,8 +15,8 @@ public class UsingSchedulers {
 
     private static void publishOnScheduling() {
         Flux.interval(Duration.ofMillis(300))
-            //.publishOn(Schedulers.newElastic("el"))
-            //.publishOn(Schedulers.newParallel("par"))
+            .publishOn(Schedulers.boundedElastic())
+            .publishOn(Schedulers.newParallel("par"))
             .publishOn(Schedulers.newSingle("one"))
             .map(it -> "[" + Thread.currentThread().getName() + "] --> " + it)
             //.buffer(3)

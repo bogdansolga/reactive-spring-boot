@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
+import reactor.util.retry.Retry;
+
+import java.time.Duration;
 
 @RestController
 @RequestMapping("/product")
@@ -29,6 +32,9 @@ public class ProductController {
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public Flux<Product> all() {
-        return productRepository.findAll();
+        return productRepository.findAll()
+                                .retryWhen(Retry.backoff(100, Duration.ofMillis(100))
+                                                .jitter(0.5)
+                                                .filter(item -> item instanceof RuntimeException));
     }
 }

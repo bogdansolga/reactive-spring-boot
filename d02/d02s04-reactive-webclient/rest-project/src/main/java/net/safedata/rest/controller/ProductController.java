@@ -35,6 +35,11 @@ public class ProductController {
         return products.get(id);
     }
 
+    @RequestMapping("/product")
+    public List<Product> getProducts() {
+        return products;
+    }
+
     private double getRandomPrice(final int multiplier) {
         return RANDOM.nextDouble() * multiplier;
     }

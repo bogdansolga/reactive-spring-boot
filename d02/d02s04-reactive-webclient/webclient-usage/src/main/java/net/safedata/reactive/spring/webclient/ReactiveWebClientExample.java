@@ -38,10 +38,11 @@ public class ReactiveWebClientExample {
     @Bean
     ApplicationRunner applicationRunner() {
         return args -> {
+            fluxReturningCall();
+            if (true) return;
+
             final Instant start = Instant.now();
-
             sequentialCalls();
-
             parallelCallsUsingStreams();
             parallelCallsUsingFluxRangeUsingProcessing();
             parallelCallsUsingFluxRangeWithoutProcessing();
@@ -49,6 +50,25 @@ public class ReactiveWebClientExample {
             System.out.println();
             LOGGER.info("Getting all the {} products took {} ms", productsCount, Duration.between(start, Instant.now()).toMillis());
         };
+    }
+
+    private void fluxReturningCall() {
+        webClient.get()
+                 .uri("/product")
+                 .retrieve()
+                 .bodyToFlux(Product.class)
+                 .doFinally(item -> System.out.println(item))
+                 .subscribe(
+                         item -> System.out.println(item),
+                         err -> err.printStackTrace(),
+                         () -> System.out.println("On complete")
+                 );
+
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     private void sequentialCalls() {

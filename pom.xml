@@ -37,7 +37,7 @@
 		<spring-boot.version>3.0.6</spring-boot.version>
 		<spring-cloud.version>2022.0.2</spring-cloud.version>
 		<spring-cloud-stream-reactive.version>2.2.1.RELEASE</spring-cloud-stream-reactive.version>
-		<spring-kafka.version>3.0.6</spring-kafka.version>
+		<spring-kafka.version>3.0.10</spring-kafka.version>
 	</properties>
 
 	<dependencyManagement>
